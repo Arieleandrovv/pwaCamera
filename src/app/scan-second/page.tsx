@@ -34,8 +34,8 @@ export default function ScanPage() {
   }, []);
 
   return (
-    <div className="w-screen h-screen overflow-hidden bg-black">
-      <div id="reader" className="w-full h-full" />
+    <div className="relative w-screen h-screen overflow-hidden bg-black">
+      <div id="reader" className="absolute inset-0 w-full h-full" />
     </div>
   );
 }
