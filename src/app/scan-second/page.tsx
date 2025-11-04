@@ -67,7 +67,7 @@ export default function ScanPage() {
         </p>
       </div>
 
-      <div id="reader" className="absolute inset-0 w-full h-full z-0" />
+      <div id="reader" className="inset-0 w-full h-full z-0 static" />
       <div className="absolute bottom-10 flex flex-col items-center z-10 w-full px-4">
         {result && (
           <p className="text-green-400 text-sm mb-2 text-center">
