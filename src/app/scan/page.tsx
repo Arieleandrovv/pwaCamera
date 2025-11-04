@@ -11,45 +11,35 @@ export default function ScanPage() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [error, setError] = useState("");
   const [result, setResult] = useState("");
-  const [scanning, setScanning] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    // Inicializa el lector
     const html5QrCode = new Html5Qrcode("reader");
     scannerRef.current = html5QrCode;
 
-    // Inicia la cámara automáticamente
-    startCamera();
+    const startScanner = async () => {
+      try {
+        await html5QrCode.start(
+          { facingMode: "environment" },
+          { fps: 10, qrbox: { width: 250, height: 250 } },
+          (decodedText) => {
+            setResult(decodedText);
+            html5QrCode.stop();
+          },
+          (err) => console.warn(err)
+        );
+      } catch (err) {
+        console.error(err);
+        setError("No se pudo acceder a la cámara");
+      }
+    };
+
+    startScanner();
 
     return () => {
       html5QrCode.stop().catch(() => {});
     };
   }, []);
-
-  const startCamera = async () => {
-    const html5QrCode = scannerRef.current;
-    if (!html5QrCode) return;
-
-    try {
-      setError("");
-      setScanning(true);
-      await html5QrCode.start(
-        { facingMode: { exact: "environment" } },
-        { fps: 10, qrbox: { width: 250, height: 250 } },
-        (decodedText) => {
-          setResult(decodedText);
-          html5QrCode.stop();
-          setScanning(false);
-        },
-        (err) => console.warn(err)
-      );
-    } catch (err) {
-      console.error(err);
-      setError("No se pudo acceder a la cámara");
-      setScanning(false);
-    }
-  };
 
   const handleSelectImage = () => {
     fileInputRef.current?.click();
@@ -108,22 +98,6 @@ export default function ScanPage() {
           onChange={handleFileChange}
           className="hidden"
         />
-
-        {!scanning ? (
-          <Button
-            onClick={startCamera}
-            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg shadow-md"
-          >
-            Activar cámara
-          </Button>
-        ) : (
-          <Button
-            onClick={() => scannerRef.current?.stop()}
-            className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg shadow-md"
-          >
-            Detener cámara
-          </Button>
-        )}
 
         <Button
           onClick={handleSelectImage}
