@@ -57,7 +57,7 @@ export default function ScanPage() {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-black overflow-hidden">
+    <div className="relative flex items-center justify-center min-h-screen overflow-hidden">
       <div id="reader" className="absolute inset-0 z-0" />
 
       <div className="absolute border-4 border-white rounded-lg w-64 h-64 z-10" />
