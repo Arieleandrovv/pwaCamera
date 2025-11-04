@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Html5Qrcode } from "html5-qrcode";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function ScanPage() {
   const scannerRef = useRef<Html5Qrcode | null>(null);
@@ -55,31 +57,35 @@ export default function ScanPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <h1 className="text-2xl font-bold mb-2">Escanear QR</h1>
+    <div className="relative flex items-center justify-center min-h-screen bg-black overflow-hidden">
+      <div id="reader" className="absolute inset-0 z-0" />
 
-      <div
-        id="reader"
-        className="relative w-[300px] h-[300px] border-4 border-blue-500 rounded-lg overflow-hidden"
-      />
+      <div className="absolute border-4 border-white rounded-lg w-64 h-64 z-10" />
 
-      {result && <p className="mt-4 text-green-600">QR detectado: {result}</p>}
-      {error && <p className="mt-4 text-red-500">{error}</p>}
+      <div className="absolute z-20 text-center text-white p-4">
+        <h2 className="text-2xl font-semibold mb-1">Escanea el código QR</h2>
+        <p className="text-sm opacity-80 mb-4">para ver los ítems del pedido</p>
 
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="image/*"
-        onChange={handleFileChange}
-        className="hidden"
-      />
+        {result && (
+          <p className="text-green-400 mt-2">QR detectado: {result}</p>
+        )}
+        {error && <p className="text-red-400 mt-2">{error}</p>}
 
-      <button
-        onClick={handleSelectImage}
-        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg"
-      >
-        Abrir galería
-      </button>
+        <Input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          className="hidden"
+        />
+
+        <Button
+          onClick={handleSelectImage}
+          className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-lg"
+        >
+          Abrir galería
+        </Button>
+      </div>
     </div>
   );
 }
