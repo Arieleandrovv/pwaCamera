@@ -33,5 +33,5 @@ export default function ScanPage() {
     };
   }, []);
 
-  return <div id="reader" className="absolute inset-0 w-full h-full" />;
+  return <div id="reader" className="absolute inset-0 w-full h-screen" />;
 }
