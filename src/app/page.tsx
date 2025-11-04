@@ -16,7 +16,7 @@ export default function Home() {
         onClick={() => router.push("/scan2")}
         className="bg-blue-600 text-white px-4 py-2 rounded-lg m-4"
       >
-        Scanear QR
+        Scanear QR 2
       </button>
     </div>
   );

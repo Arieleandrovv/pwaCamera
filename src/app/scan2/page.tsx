@@ -21,7 +21,7 @@ export default function ScanPage() {
       try {
         await html5QrCode.start(
           { facingMode: "environment" },
-          { fps: 10, qrbox: { width: 250, height: 250 } },
+          { fps: 10, qrbox: { width: 250, height: 150 } },
           (decodedText) => {
             setResult(decodedText);
             html5QrCode.stop();
@@ -67,8 +67,8 @@ export default function ScanPage() {
         </p>
       </div>
 
-      <div id="reader" className="absolute inset-0 w-full z-0" />
-      <div className="absolute bottom-10 flex flex-col items-center z-10 w-full h-full px-4">
+      <div id="reader" className="absolute inset-0 w-full h-full z-0" />
+      <div className="absolute bottom-10 flex flex-col items-center z-10 w-full px-4">
         {result && (
           <p className="text-green-400 text-sm mb-2 text-center">
             QR detectado: {result}
