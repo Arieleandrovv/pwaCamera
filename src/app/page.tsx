@@ -8,7 +8,13 @@ export default function Home() {
       <h1 className="text-2xl font-bold">Demo Escáner QR</h1>
       <button
         onClick={() => router.push("/scan")}
-        className="bg-blue-600 text-white px-4 py-2 rounded-lg"
+        className="bg-blue-600 text-white px-4 py-2 rounded-lg m-4"
+      >
+        Scanear QR
+      </button>
+      <button
+        onClick={() => router.push("/scan2")}
+        className="bg-blue-600 text-white px-4 py-2 rounded-lg m-4"
       >
         Scanear QR
       </button>

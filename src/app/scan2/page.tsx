@@ -68,7 +68,7 @@ export default function ScanPage() {
       </div>
 
       <div id="reader" className="absolute inset-0 w-full z-0" />
-      <div className="absolute bottom-10 flex flex-col items-center z-10 w-full px-4">
+      <div className="absolute bottom-10 flex flex-col items-center z-10 w-full h-full px-4">
         {result && (
           <p className="text-green-400 text-sm mb-2 text-center">
             QR detectado: {result}
