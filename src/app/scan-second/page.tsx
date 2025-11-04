@@ -21,7 +21,7 @@ export default function ScanPage() {
       try {
         await html5QrCode.start(
           { facingMode: "environment" },
-          { fps: 10, qrbox: { width: 250, height: 250 } },
+          { fps: 10, qrbox: 250 },
           (decodedText) => {
             setResult(decodedText);
             html5QrCode.stop();
@@ -59,15 +59,17 @@ export default function ScanPage() {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen bg-black overflow-hidden w-full">
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-black overflow-hidden">
+      <div id="reader" className="absolute inset-0 w-full h-full z-0" />
+
       <div className="absolute top-6 z-10 text-center text-white">
         <h1 className="text-2xl font-bold">Escanea el código QR</h1>
         <p className="text-sm opacity-80">
           para poder ver los ítems del pedido
         </p>
       </div>
+      <div className="absolute w-64 h-64 border-4 border-white rounded-lg z-10" />
 
-      <div id="reader" className="inset-0 w-full h-full z-0 static" />
       <div className="absolute bottom-10 flex flex-col items-center z-10 w-full px-4">
         {result && (
           <p className="text-green-400 text-sm mb-2 text-center">
@@ -94,7 +96,7 @@ export default function ScanPage() {
         </Button>
         <Button
           onClick={() => router.push("/")}
-          className="bg-red-600 hover:bg-red-400 text-white px-4 py-2 rounded-lg shadow-md"
+          className="bg-red-600 hover:bg-red-400 text-white px-4 py-2 rounded-lg shadow-md mt-4"
         >
           regresar
         </Button>
