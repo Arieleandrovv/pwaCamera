@@ -66,7 +66,7 @@ export default function ScanPage() {
           para poder ver los ítems del pedido
         </p>
       </div>
-      <div id="reader" className="absolute inset-0 w-full h-full z-0" />
+      <div id="reader" className="inset-0 w-full h-full z-0" />
       <div className="absolute w-64 h-64 border-4 border-white rounded-lg z-10" />
       <div className="absolute bottom-10 flex flex-col items-center z-10 w-full px-4">
         {result && (
