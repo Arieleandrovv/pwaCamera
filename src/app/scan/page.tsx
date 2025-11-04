@@ -19,7 +19,7 @@ export default function ScanPage() {
       try {
         await html5QrCode.start(
           { facingMode: "environment" },
-          { fps: 10, qrbox: { width: 250, height: 250 } },
+          { fps: 10 },
           (decodedText) => {
             setResult(decodedText);
             html5QrCode.stop();
