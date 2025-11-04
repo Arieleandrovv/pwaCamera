@@ -33,5 +33,9 @@ export default function ScanPage() {
     };
   }, []);
 
-  return <div id="reader" className="absolute inset-0 w-full h-screen" />;
+  return (
+    <div className="bg-black">
+      <div id="reader" className="w-full h-screen" />
+    </div>
+  );
 }
