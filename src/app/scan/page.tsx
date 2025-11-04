@@ -57,35 +57,34 @@ export default function ScanPage() {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen overflow-hidden">
-      <div id="reader" className="absolute inset-0 z-0" />
+    <div className="relativ flex flex-col items-center justify-center min-h-screen p-4">
+      <h1 className="text-2xl font-bold mb-2">Escanea el codigo QR</h1>
+      <h1 className="text-2xl font-bold mb-2">
+        para poder ver los items del pedido
+      </h1>
 
-      <div className="absolute border-4 border-white rounded-lg w-64 h-64 z-10" />
+      <div
+        id="reader"
+        className="relative w-full h-full border-4 rounded-lg overflow-hidden"
+      />
 
-      <div className="absolute z-20 text-center text-white p-4">
-        <h2 className="text-2xl font-semibold mb-1">Escanea el código QR</h2>
-        <p className="text-sm opacity-80 mb-4">para ver los ítems del pedido</p>
+      {result && <p className="mt-4 text-green-600">QR detectado: {result}</p>}
+      {error && <p className="mt-4 text-red-500">{error}</p>}
 
-        {result && (
-          <p className="text-green-400 mt-2">QR detectado: {result}</p>
-        )}
-        {error && <p className="text-red-400 mt-2">{error}</p>}
+      <Input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleFileChange}
+        className="hidden"
+      />
 
-        <Input
-          ref={fileInputRef}
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="hidden"
-        />
-
-        <Button
-          onClick={handleSelectImage}
-          className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-lg"
-        >
-          Abrir galería
-        </Button>
-      </div>
+      <Button
+        onClick={handleSelectImage}
+        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg absolute"
+      >
+        Abrir galería
+      </Button>
     </div>
   );
 }
